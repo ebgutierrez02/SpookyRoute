@@ -13,20 +13,32 @@ houses = houses.map(function(house)
     return house;
 });
 
-function addHouse() 
+async function addHouse()
 {
     let input = document.getElementById("houseAddress");
     let address = input.value.trim();
 
     if (address === "")
-        {
+    {
         alert("Please enter a house address!");
         return;
-        }
+    }
 
+    // Find the address in Pullman, WA
+    let location = await findAddress(address);
+
+    if (location === null)
+    {
+        alert("Could not find this address in Pullman, WA.");
+        return;
+    }
+
+    // Add the house with its coordinates
     houses.push({
-    address: address,
-    visited: false
+        address: address,
+        visited: false,
+        lat: location.lat,
+        lng: location.lng
     });
 
     input.value = "";
@@ -100,6 +112,7 @@ function displayHouses() {
     });
 
     updateProgress();
+    updateHouseMarkers();
 }
 
 
@@ -175,7 +188,6 @@ function saveHouses()
     localStorage.setItem("houses", JSON.stringify(houses));
 }
 
-displayHouses();
 let startInput = document.getElementById("startAddress");
 
 // Load the previously saved starting location
@@ -216,3 +228,75 @@ L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
     attribution: '&copy; OpenStreetMap contributors, HOT'
 }).addTo(map);
 
+let houseMarkers = L.layerGroup().addTo(map);   
+let candyMarkers = L.layerGroup().addTo(map);
+
+
+// Convert a Pullman address into map coordinates
+async function findAddress(address)
+{
+    let searchAddress = address + ", Pullman, WA";
+
+    let url = "https://nominatim.openstreetmap.org/search?" +
+        new URLSearchParams({
+            q: searchAddress,
+            format: "json",
+            limit: "1",
+            countrycodes: "us",
+            viewbox: "-117.25,46.80,-117.10,46.68",
+            bounded: "1"
+        });
+
+    try
+    {
+        let response = await fetch(url);
+
+        if (!response.ok)
+        {
+            throw new Error("Address lookup failed");
+        }
+
+        let results = await response.json();
+
+        if (results.length === 0)
+        {
+            return null;
+        }
+
+        return {
+            lat: Number(results[0].lat),
+            lng: Number(results[0].lon)
+        };
+    }
+    catch (error)
+    {
+        console.error("Could not find address:", error);
+        return null;
+    }
+}
+
+findAddress("405 SE Bishop Blvd").then(function(location)
+{
+    console.log("Pullman address result:", location);
+});
+
+function updateHouseMarkers()
+{
+    houseMarkers.clearLayers();
+
+    houses.forEach(function(house)
+    {
+        if (house.lat == null || house.lng == null)
+        {
+            return;
+        }
+
+        let marker = L.marker([house.lat, house.lng]);
+
+        marker.bindPopup("🎃 " + house.address);
+
+        marker.addTo(houseMarkers);
+    });
+}
+
+updateHouseMarkers();
