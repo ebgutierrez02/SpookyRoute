@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpookyRoute - Halloween Route Planner</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1> SpookyRoute </h1>
+    <p>Plan your perfect trick-or-treating route!</p>
+
+    <div class="container">
+
+        <h2>Starting Location</h2>
+        <input type="text" id="startAddress"
+               placeholder="Enter starting address">
+
+        <h2>Add a House</h2>
+        <input type="text" id="houseAddress"
+               placeholder="Enter house address">
+
+        <button onclick="addHouse()">Add House</button>
+
+        <h2>Your Trick-or-Treat Route</h2>
+        <div id="progressSection">
+            <p id="progressText">0 out of 0 houses visited</p>
+            <div id="progressBar">
+                <div id="progressFill"></div>
+            </div>
+        </div>
+
+        <ul id="houseList"></ul>
+
+        <button onclick="openRoute()">
+            Open in Google Maps
+        </button>
+
+        <button id="clearRouteButton" onclick="clearRoute()">
+            Clear Entire Route
+        </button>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

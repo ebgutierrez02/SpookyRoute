@@ -1,0 +1,119 @@
+
+body 
+{
+    background: linear-gradient(135deg, #1c1026, #39202a, #573526);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px;
+}
+
+h1 
+{
+    color: orange;
+    font-size: 42px;
+}
+
+.container 
+{
+    background-color: #2b2038;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+input 
+{
+    padding: 12px;
+    width: 80%;
+    margin: 10px;
+    border-radius: 6px;
+    border: none;
+}
+
+button 
+{
+    background-color: #ed872d;
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover 
+{
+    background-color: #ffb347;
+}
+
+li 
+{
+    margin: 10px;
+    padding: 12px;
+    background-color: #573526;
+    border: 1px solid #a86a46;
+    border-left: 5px solid #ed872d;
+    border-radius: 10px;
+    list-style: none;
+}
+
+ul 
+{
+    padding: 0;
+}
+
+
+/* Visited house checkboxes */
+input[type="checkbox"] 
+{
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    cursor: pointer;
+    accent-color: orange;
+}
+
+#clearRouteButton 
+{
+    background-color: #8f3035;
+    border-color: #b85b53;
+}
+
+#ClearRouteButton:hover 
+{
+    background-color: #b83e42;
+    box-shadow: 0 0 12px #b83e42;
+}
+
+#progressSection 
+{
+    margin: 20px 0; 
+}
+
+#progressText
+{
+    color:orange;
+    font-weight: bold;
+}
+
+#progressBar
+{
+    width: 100%;
+    height: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#progressFill
+{
+    width: 0%;
+    height: 100%;
+    background-color: orange;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+
