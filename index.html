@@ -17,37 +17,48 @@
     <p>Plan your perfect trick-or-treating route!</p>
 
     <!-- REGISTER YOUR CANDY HOUSE -->
-    <div class="container" id="candyRegistration">
-        <h2>🍬 Register Your Candy House</h2>
+    
 
-        <p>Let trick-or-treaters know if you're giving out candy!</p>
+<!-- REGISTER YOUR CANDY HOUSE -->
+<details class="container" id="candyRegistration">
 
-        <input type="text" id="candyAddress"
-            placeholder="Enter your house address">
+    <summary>🍬 Register Your Candy House</summary>
 
-        <select id="candyStatus">
-            <option value="yes">🍬 Giving out candy</option>
-            <option value="no">Not giving out candy</option>
-        </select>
+    <p>Let trick-or-treaters know if you're giving out candy!</p>
 
-        <input type="text" id="candyHours"
-            placeholder="Candy hours (e.g. 5 PM - 9 PM)">
+    <input type="text" id="candyAddress"
+        placeholder="Enter your house address">
 
-        <button onclick="registerCandyHouse()">
-            Register House
-        </button>
+    <select id="candyStatus">
+        <option value="yes">🍬 Giving out candy</option>
+        <option value="no">Not giving out candy</option>
+    </select>
 
-        <p id="candyMessage"></p>
-    </div>
+    <input type="text" id="candyHours"
+        placeholder="Candy hours (e.g. 5 PM - 9 PM)">
+
+    <button onclick="registerCandyHouse()">
+        Register House
+    </button>
+
+    <p id="candyMessage"></p>
+
+</details>
+
 
     <!-- HOUSES GIVING OUT CANDY -->
-    <div class="container" id="candyHouseSection">
-        <h2>🍬 Houses Giving Out Candy</h2>
+   
+<!-- HOUSES GIVING OUT CANDY -->
+<details class="container" id="candyHouseSection">
 
-        <p>See which houses have registered for Halloween and add them to your route!</p>
+    <summary>🍬 Houses Giving Out Candy</summary>
 
-        <ul id="candyHouseList"></ul>
-    </div>
+    <p>See which houses have registered for Halloween and add them to your route!</p>
+
+    <ul id="candyHouseList"></ul>
+
+</details>
+
 
     <!-- TRICK-OR-TREAT ROUTE PLANNER -->
     <div class="container">

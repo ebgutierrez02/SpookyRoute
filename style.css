@@ -183,3 +183,47 @@ input[type="checkbox"]
     margin-top: 20px;
     box-sizing: border-box;
 }
+
+/* Collapsible candy registration */
+#candyRegistration summary {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffad4d;
+    padding: 10px;
+    list-style-position: inside;
+}
+
+#candyRegistration:not([open]) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#candyRegistration summary:hover {
+    color: #ffd18a;
+}
+
+
+/* Candy section dropdowns */
+#candyRegistration summary,
+#candyHouseSection summary {
+    cursor: pointer;
+    color: #ffad4d;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 12px;
+    list-style-position: inside;
+}
+
+/* Reduce space when dropdowns are closed */
+#candyRegistration:not([open]),
+#candyHouseSection:not([open]) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Highlight dropdown titles on hover */
+#candyRegistration summary:hover,
+#candyHouseSection summary:hover {
+    color: #ffd18a;
+}
