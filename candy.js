@@ -48,7 +48,7 @@ function displayCandyHouses()
 
     list.innerHTML = "";
 
-    candyHouses.forEach(function(house)
+    candyHouses.forEach(function(house, index)
     {
         let li = document.createElement("li");
 
@@ -59,7 +59,7 @@ function displayCandyHouses()
         li.textContent = house.address + " — " + status +
             (house.hours ? " — " + house.hours : "");
 
-        // NEW: Add a button for houses giving out candy
+        // Add to Route button
         if (house.givingCandy)
         {
             let button = document.createElement("button");
@@ -74,18 +74,52 @@ function displayCandyHouses()
             li.appendChild(button);
         }
 
+        // Edit button
+        let editButton = document.createElement("button");
+        editButton.textContent = "✏️ Edit";
+
+        editButton.addEventListener("click", function()
+        {
+            editCandyHouse(house);
+        });
+
+        li.appendChild(document.createTextNode(" "));
+        li.appendChild(editButton);
+
+        // NEW: Remove button
+        let removeButton = document.createElement("button");
+        removeButton.textContent = "🗑️ Remove";
+
+        removeButton.addEventListener("click", function()
+        {
+            removeCandyHouse(index);
+        });
+
+        li.appendChild(document.createTextNode(" "));
+        li.appendChild(removeButton);
+
         list.appendChild(li);
     });
 }
 
-// NEW: Send registered house address to route planner
+// Add registered house to route
 function addRegisteredHouseToRoute(address)
 {
-    let houseInput = document.getElementById("houseAddress");
+    let alreadyAdded = houses.some(function(house)
+    {
+        return house.address.trim().toLowerCase() ===
+               address.trim().toLowerCase();
+    });
 
+    if (alreadyAdded)
+    {
+        alert("🎃 This house is already on your route!");
+        return;
+    }
+
+    let houseInput = document.getElementById("houseAddress");
     houseInput.value = address;
 
-    // Use the existing route function from script.js
     if (typeof addHouse === "function")
     {
         addHouse();
@@ -94,6 +128,72 @@ function addRegisteredHouseToRoute(address)
     {
         alert("Route planner is not available.");
     }
+}
+
+// UPDATED: Edit house information
+function editCandyHouse(house)
+{
+    let newAddress = prompt(
+        "Edit house address:",
+        house.address
+    );
+
+    if (newAddress === null) return;
+
+    newAddress = newAddress.trim();
+
+    if (newAddress === "")
+    {
+        alert("House address cannot be empty!");
+        return;
+    }
+
+    let newHours = prompt(
+        "Edit candy hours:",
+        house.hours
+    );
+
+    if (newHours === null) return;
+
+    let newStatus = confirm(
+        "Is this house giving out candy?\n\n" +
+        "OK = Yes\nCancel = No"
+    );
+
+    house.address = newAddress;
+    house.hours = newHours.trim();
+    house.givingCandy = newStatus;
+
+    localStorage.setItem(
+        "candyHouses",
+        JSON.stringify(candyHouses)
+    );
+
+    displayCandyHouses();
+
+    alert("🎃 House information updated!");
+}
+
+// NEW: Remove a registered house
+function removeCandyHouse(index)
+{
+    let confirmation = confirm(
+        "Are you sure you want to remove this registered house?"
+    );
+
+    if (!confirmation)
+    {
+        return;
+    }
+
+    candyHouses.splice(index, 1);
+
+    localStorage.setItem(
+        "candyHouses",
+        JSON.stringify(candyHouses)
+    );
+
+    displayCandyHouses();
 }
 
 displayCandyHouses();
