@@ -46,6 +46,32 @@
 
     </div>
 
+    
+<div class="container" id="candyRegistration">
+    <h2>🍬 Register Your Candy House</h2>
+
+    <p>Let trick-or-treaters know if you're giving out candy!</p>
+
+    <input type="text" id="candyAddress"
+        placeholder="Enter your house address">
+
+    <select id="candyStatus">
+        <option value="yes">🍬 Giving out candy</option>
+        <option value="no">Not giving out candy</option>
+    </select>
+
+    <input type="text" id="candyHours"
+        placeholder="Candy hours (e.g. 5 PM - 9 PM)">
+
+    <button onclick="registerCandyHouse()">
+        Register House
+    </button>
+
+    <p id="candyMessage"></p>
+</div>
+
+
     <script src="script.js"></script>
+    <script src="candy.js"></script>
 </body>
 </html>

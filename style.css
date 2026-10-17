@@ -117,3 +117,35 @@ input[type="checkbox"]
 }
 
 
+/* Candy house registration */
+#candyRegistration
+{
+    border: 2px solid #a86a46;
+    background-color: #573526;
+    margin-top: 30px;
+}
+
+#candyRegistration h2
+{
+    color: #ffad42;
+}
+
+#candyStatus
+{
+    padding: 12px;
+    width: 85%;
+    margin: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: #fff1df;
+    color: #30152d;
+}
+
+#candyMessage
+{
+    color: #ffcc80;
+    font-weight: bold;
+}
+
+
+
