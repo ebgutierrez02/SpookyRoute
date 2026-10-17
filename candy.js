@@ -11,7 +11,44 @@ if (oldCandyHouse && !localStorage.getItem("candyHouseMigrated"))
     localStorage.setItem("candyHouseMigrated", "true");
 }
 
-function registerCandyHouse()
+
+async function isValidCandyAddress(address)
+{
+    try
+    {
+        let url = "https://nominatim.openstreetmap.org/search?" +
+            new URLSearchParams({
+                q: address,
+                format: "json",
+                addressdetails: "1",
+                limit: "5"
+            });
+
+        let response = await fetch(url);
+
+        if (!response.ok)
+        {
+            return null;
+        }
+
+        let results = await response.json();
+
+        // Only accept a result with a specific house number
+        return results.some(function(place)
+        {
+            return place.address &&
+                   place.address.house_number &&
+                   place.address.road;
+        });
+    }
+    catch (error)
+    {
+        return null;
+    }
+}
+
+
+async function registerCandyHouse()
 {
     let address = document.getElementById("candyAddress").value.trim();
     let status = document.getElementById("candyStatus").value;
@@ -22,6 +59,23 @@ function registerCandyHouse()
         alert("Please enter your house address!");
         return;
     }
+
+    
+    // Check whether the address can be found
+    let validAddress = await isValidCandyAddress(address);
+
+    if (validAddress === null)
+    {
+        alert("Could not verify the address right now. Please try again.");
+        return;
+    }
+
+    if (!validAddress)
+    {
+        alert("🎃 Address not found! Please enter a complete house address, including city and state.");
+        return;
+    }
+
 
     let candyHouse = {
         address: address,
