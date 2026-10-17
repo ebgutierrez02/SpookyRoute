@@ -206,3 +206,13 @@ function updateProgress()
 
     document.getElementById("progressFill").style.width = percentage + "%";
 }
+
+
+let map = L.map("map").setView([46.7296, -117.1817], 13);
+
+L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+{
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors, HOT'
+}).addTo(map);
+

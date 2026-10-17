@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
 <body>
 
     <h1> SpookyRoute </h1>
@@ -39,6 +41,8 @@
         <button onclick="openRoute()">
             Open in Google Maps
         </button>
+        <h2> spookyRoute Map</h2>
+        <div id="map"></div>
 
         <button id="clearRouteButton" onclick="clearRoute()">
             Clear Entire Route
@@ -71,6 +75,7 @@
 </div>
 
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>
     <script src="candy.js"></script>
 </body>
