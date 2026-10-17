@@ -59,8 +59,41 @@ function displayCandyHouses()
         li.textContent = house.address + " — " + status +
             (house.hours ? " — " + house.hours : "");
 
+        // NEW: Add a button for houses giving out candy
+        if (house.givingCandy)
+        {
+            let button = document.createElement("button");
+            button.textContent = "➕ Add to Route";
+
+            button.addEventListener("click", function()
+            {
+                addRegisteredHouseToRoute(house.address);
+            });
+
+            li.appendChild(document.createTextNode(" "));
+            li.appendChild(button);
+        }
+
         list.appendChild(li);
     });
+}
+
+// NEW: Send registered house address to route planner
+function addRegisteredHouseToRoute(address)
+{
+    let houseInput = document.getElementById("houseAddress");
+
+    houseInput.value = address;
+
+    // Use the existing route function from script.js
+    if (typeof addHouse === "function")
+    {
+        addHouse();
+    }
+    else
+    {
+        alert("Route planner is not available.");
+    }
 }
 
 displayCandyHouses();

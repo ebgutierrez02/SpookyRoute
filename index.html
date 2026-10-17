@@ -16,6 +16,40 @@
     <h1> SpookyRoute </h1>
     <p>Plan your perfect trick-or-treating route!</p>
 
+    <!-- REGISTER YOUR CANDY HOUSE -->
+    <div class="container" id="candyRegistration">
+        <h2>🍬 Register Your Candy House</h2>
+
+        <p>Let trick-or-treaters know if you're giving out candy!</p>
+
+        <input type="text" id="candyAddress"
+            placeholder="Enter your house address">
+
+        <select id="candyStatus">
+            <option value="yes">🍬 Giving out candy</option>
+            <option value="no">Not giving out candy</option>
+        </select>
+
+        <input type="text" id="candyHours"
+            placeholder="Candy hours (e.g. 5 PM - 9 PM)">
+
+        <button onclick="registerCandyHouse()">
+            Register House
+        </button>
+
+        <p id="candyMessage"></p>
+    </div>
+
+    <!-- HOUSES GIVING OUT CANDY -->
+    <div class="container" id="candyHouseSection">
+        <h2>🍬 Houses Giving Out Candy</h2>
+
+        <p>See which houses have registered for Halloween and add them to your route!</p>
+
+        <ul id="candyHouseList"></ul>
+    </div>
+
+    <!-- TRICK-OR-TREAT ROUTE PLANNER -->
     <div class="container">
 
         <h2>Starting Location</h2>
@@ -41,6 +75,7 @@
         <button onclick="openRoute()">
             Open in Google Maps
         </button>
+
         <h2> spookyRoute Map</h2>
         <div id="map"></div>
 
@@ -49,42 +84,6 @@
         </button>
 
     </div>
-
-    
-<div class="container" id="candyRegistration">
-    <h2>🍬 Register Your Candy House</h2>
-
-    <p>Let trick-or-treaters know if you're giving out candy!</p>
-
-    <input type="text" id="candyAddress"
-        placeholder="Enter your house address">
-
-    <select id="candyStatus">
-        <option value="yes">🍬 Giving out candy</option>
-        <option value="no">Not giving out candy</option>
-    </select>
-
-    <input type="text" id="candyHours"
-        placeholder="Candy hours (e.g. 5 PM - 9 PM)">
-
-    <button onclick="registerCandyHouse()">
-        Register House
-    </button>
-
-    <p id="candyMessage"></p>
-</div>
-
-    <p id="candyMessage"></p>
-</div>
-
-
-<div class="container" id="candyHouseSection">
-    <h2>🍬 Houses Giving Out Candy</h2>
-
-    <p>See which houses have registered for Halloween!</p>
-
-    <ul id="candyHouseList"></ul>
-</div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>
