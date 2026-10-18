@@ -227,3 +227,12 @@ input[type="checkbox"]
 #candyHouseSection summary:hover {
     color: #ffd18a;
 }
+
+/* Candy house map pins */
+.candy-pin {
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    text-align: center;
+    line-height: 30px;
+}

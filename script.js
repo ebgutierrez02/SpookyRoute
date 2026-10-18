@@ -300,3 +300,63 @@ function updateHouseMarkers()
 }
 
 updateHouseMarkers();
+
+
+async function updateCandyMarkers()
+{
+    candyMarkers.clearLayers();
+
+    // Get registered houses from localStorage
+    let registeredHouses = JSON.parse(
+        localStorage.getItem("candyHouses")
+    ) || [];
+
+    for (let house of registeredHouses)
+    {
+        // Only show houses giving out candy
+        if (!house.givingCandy)
+        {
+            continue;
+        }
+
+        // Find the house coordinates
+        let location = await findAddress(house.address);
+
+        if (location === null)
+        {
+            continue;
+        }
+
+        // Create a candy icon
+        let candyIcon = L.divIcon({
+            html: "🍬",
+            className: "candy-pin",
+            iconSize: [30, 30],
+            iconAnchor: [15, 15]
+        });
+
+        // Create a marker
+        let marker = L.marker(
+            [location.lat, location.lng],
+            { icon: candyIcon }
+        );
+
+        // Show house information when clicked
+        let popup = document.createElement("div");
+
+        let address = document.createElement("strong");
+        address.textContent = house.address;
+        popup.appendChild(address);
+
+        let hours = document.createElement("p");
+        hours.textContent = "🍬 Candy Hours: " +
+            (house.hours || "Not specified");
+        popup.appendChild(hours);
+
+        marker.bindPopup(popup);
+        marker.addTo(candyMarkers);
+    }
+}
+
+// Display saved candy houses when the page loads
+updateCandyMarkers();

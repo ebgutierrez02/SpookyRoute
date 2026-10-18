@@ -224,8 +224,9 @@ function editCandyHouse(house)
     );
 
     displayCandyHouses();
+updateCandyMarkers();
 
-    alert("🎃 House information updated!");
+alert("🎃 House information updated!");
 }
 
 // NEW: Remove a registered house
@@ -251,3 +252,4 @@ function removeCandyHouse(index)
 }
 
 displayCandyHouses();
+updateCandyMarkers();
