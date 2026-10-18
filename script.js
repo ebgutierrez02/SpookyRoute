@@ -291,8 +291,14 @@ function updateHouseMarkers()
             return;
         }
 
-        let marker = L.marker([house.lat, house.lng]);
-
+        let marker = L.circleMarker([house.lat, house.lng],
+        {
+            radius: 10,
+            color: house.visited ? "#15803d" : "#c2410c",
+            fillColor: house.visited ? "#22c55e" : "#f97316",
+            fillOpacity: 0.9,
+            weight: 3
+        });
         marker.bindPopup("🎃 " + house.address);
 
         marker.addTo(houseMarkers);
@@ -360,3 +366,28 @@ async function updateCandyMarkers()
 
 // Display saved candy houses when the page loads
 updateCandyMarkers();
+function generateWalkingRoute()
+{
+    let start = document.getElementById("startAddress").value.trim();
+
+    let unvisitedHouses = houses.filter(function(house)
+    {
+        return !house.visited;
+    });
+
+    if (start === "")
+    {
+        alert("Please enter a starting address in Pullman!");
+        return;
+    }
+
+    if (unvisitedHouses.length === 0)
+    {
+        alert("Please add at least one unvisited house!");
+        return;
+    }
+
+    document.getElementById("routeMessage").textContent =
+        "🎃 Ready to generate a walking route for " +
+        unvisitedHouses.length + " house(s)!";
+}
